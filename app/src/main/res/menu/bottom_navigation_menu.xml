@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/action_popular"
+        android:id="@+id/popularFragment"
         android:icon="@drawable/ic_popular"
         android:title="@string/menu_popular" />
 
     <item
-        android:id="@+id/action_favorites"
+        android:id="@+id/favoriteFragment"
         android:icon="@drawable/ic_favorites"
-        android:title="@string/menu_favorites" />
+        android:title="@string/menu_favorite" />
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/historyFragment"
+        android:icon="@drawable/ic_history"
+        android:title="@string/menu_history" />
+
+    <item
+        android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search"
         android:title="@string/menu_search" />
 </menu>
