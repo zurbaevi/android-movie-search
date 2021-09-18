@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import dev.zurbaevi.moviesearch.R
 import dev.zurbaevi.moviesearch.data.api.RetrofitBuilder
@@ -92,22 +93,13 @@ class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
                             Toast.LENGTH_LONG
                         ).show()
                     }
-                    Status.NOT_FOUND -> {
-                        binding.progressBar.visibility = View.GONE
-                        binding.recyclerView.visibility = View.GONE
-                        DynamicToast.makeWarning(
-                            requireContext(),
-                            it.message,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
                 }
             })
         }
     }
 
-    override fun onItemClick(taskEntry: MovieModel) {
-        Toast.makeText(requireContext(), "Movie clicked!", Toast.LENGTH_SHORT).show()
+    override fun onItemClick(imdbID: String) {
+        findNavController().navigate(SearchFragmentDirections.actionSearchFragmentToMovieDetailFragment(imdbID))
     }
 
 }

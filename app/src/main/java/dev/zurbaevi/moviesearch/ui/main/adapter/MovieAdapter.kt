@@ -23,7 +23,7 @@ class MovieAdapter(private val clickListener: OnItemClickListener) :
     }
 
     interface OnItemClickListener {
-        fun onItemClick(taskEntry: MovieModel)
+        fun onItemClick(imdbID: String)
     }
 
     inner class MovieViewHolder(private val binding: ItemMovieLayoutBinding) :
@@ -34,7 +34,7 @@ class MovieAdapter(private val clickListener: OnItemClickListener) :
                 root.setOnClickListener {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        clickListener.onItemClick(getItem(position))
+                        clickListener.onItemClick(getItem(position).imdbID)
                     }
                 }
             }

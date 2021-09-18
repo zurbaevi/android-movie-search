@@ -27,7 +27,7 @@ class SearchViewModel(private val searchMovieRepository: SearchMovieRepository) 
                 .subscribe({
                     if (it.response.toString() == "False") {
                         _movieListData.postValue(
-                            Resource.notFound(
+                            Resource.error(
                                 "Sorry, no movie found, try another title!",
                                 null
                             )

@@ -32,6 +32,12 @@ data class MovieDetailModel(
     var boxOffice: String = "",
 
     @SerializedName("Awards")
-    var awards: String = ""
+    var awards: String = "",
+
+    @SerializedName("Language")
+    var language: String = "",
+
+    @SerializedName("Production")
+    var production: String = ""
 
 )

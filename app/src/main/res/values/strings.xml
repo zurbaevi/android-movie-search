@@ -10,5 +10,21 @@
     <string name="actors_str">Actors</string>
     <string name="pictures_str">Pictures</string>
     <string name="fragment_favorite_movies">Favorite movies</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+    <string name="overview_text">Overview</string>
+    <string name="type_text">Type</string>
+    <string name="box_office_text">Box office</string>
+    <string name="awards_text">Awards</string>
+    <string name="content_description_background_color">Background color</string>
+    <string name="content_description_movie_poster">Movie poster</string>
+    <string name="content_description_icon_star">Icon star</string>
+    <string name="content_description_icon_timer">Icon timer</string>
+    <string name="content_description_icon_date">Icon date</string>
+    <string name="detail_overview">Overview</string>
+    <string name="detail_type">Type:</string>
+    <string name="detail_box_office">BoxOffice:</string>
+    <string name="detail_awards">Awards:</string>
+    <string name="detail_language">Language:</string>
+    <string name="detail_production">Production:</string>
+    <string name="content_description_fab_favorite">Favorite</string>
 </resources>
