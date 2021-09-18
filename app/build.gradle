@@ -53,11 +53,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "com.pranavpandey.android:dynamic-toasts:$dynamic_toast_cersion"
     kapt "androidx.room:room-compiler:$room_version"
+    implementation "it.xabaras.android:recyclerview-swipedecorator:$recycler_view_swipe_decorator_version"
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
-    implementation "com.facebook.shimmer:shimmer:$shimmer_version"
 
 }

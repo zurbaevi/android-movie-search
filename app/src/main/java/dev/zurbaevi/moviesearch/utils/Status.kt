@@ -3,5 +3,6 @@ package dev.zurbaevi.moviesearch.utils
 enum class Status {
     SUCCESS,
     ERROR,
-    LOADING
+    LOADING,
+    NOT_FOUND
 }

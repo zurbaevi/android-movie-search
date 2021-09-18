@@ -1,13 +1,13 @@
 package dev.zurbaevi.moviesearch.ui.main.view.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import com.pranavpandey.android.dynamic.toasts.DynamicToast
+import dev.zurbaevi.moviesearch.R
 import dev.zurbaevi.moviesearch.data.api.RetrofitBuilder
 import dev.zurbaevi.moviesearch.data.model.MovieModel
 import dev.zurbaevi.moviesearch.databinding.FragmentSearchBinding
@@ -15,7 +15,6 @@ import dev.zurbaevi.moviesearch.ui.base.SearchViewModelFactory
 import dev.zurbaevi.moviesearch.ui.main.adapter.MovieAdapter
 import dev.zurbaevi.moviesearch.ui.main.viewmodel.SearchViewModel
 import dev.zurbaevi.moviesearch.utils.Status
-
 
 class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
 
@@ -40,13 +39,29 @@ class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.imageButtonSearch.setOnClickListener {
-            searchViewModel.searchByName(binding.editTextSearch.text.toString())
-        }
-
         setupUI()
         setupObserver()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.appbar_menu, menu)
+        val search = menu.findItem(R.id.appbarSearch)
+        val searchView = search.actionView as SearchView
+        searchView.isSubmitButtonEnabled = false
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    searchViewModel.searchByName(query.toString())
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
     }
 
     private fun setupUI() {
@@ -57,16 +72,38 @@ class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
 
     private fun setupObserver() {
         binding.apply {
-            searchViewModel.movieListData.observe(viewLifecycleOwner, Observer {
+            searchViewModel.movieListData.observe(viewLifecycleOwner, {
                 when (it.status) {
-                    Status.SUCCESS -> adapter.submitList(it.data?.movieEntityList)
+                    Status.SUCCESS -> {
+                        binding.recyclerView.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        adapter.submitList(it.data?.movieEntityList)
+                    }
+                    Status.LOADING -> {
+                        binding.recyclerView.visibility = View.GONE
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    Status.ERROR -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerView.visibility = View.GONE
+                        DynamicToast.makeError(
+                            requireContext(),
+                            it.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    Status.NOT_FOUND -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.recyclerView.visibility = View.GONE
+                        DynamicToast.makeWarning(
+                            requireContext(),
+                            it.message,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             })
         }
-    }
-
-    private fun renderList(users: List<MovieModel>) {
-        adapter.submitList(users)
     }
 
     override fun onItemClick(taskEntry: MovieModel) {

@@ -2,13 +2,14 @@ package dev.zurbaevi.moviesearch.data.local
 
 import androidx.room.*
 import dev.zurbaevi.moviesearch.data.model.MovieModel
+import io.reactivex.Completable
 import io.reactivex.Flowable
 
 @Dao
 interface MovieDao {
 
-    @Insert
-    fun save(movie: MovieModel)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun save(movie: MovieModel): Completable
 
     @Update
     fun update(movie: MovieModel)

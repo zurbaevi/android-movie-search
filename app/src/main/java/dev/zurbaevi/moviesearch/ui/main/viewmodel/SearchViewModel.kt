@@ -18,27 +18,25 @@ class SearchViewModel(private val searchMovieRepository: SearchMovieRepository) 
     val movieListData: LiveData<Resource<SearchModel>>
         get() = _movieListData
 
-//    private val _movieNotExist = MutableLiveData<Resource<Boolean>>()
-//    val movieNotExist: LiveData<Resource<Boolean>>
-//        get() = _movieNotExist
-//
-//    private val _responseControl = MutableLiveData<Resource<Boolean>>()
-//    val responseControl: LiveData<Resource<Boolean>>
-//        get() = _responseControl
-//
-//    private val _progress = MutableLiveData<Resource<Boolean>>()
-//    val progress: LiveData<Resource<Boolean>>
-//        get() = _progress
-
     fun searchByName(query: String) {
+        _movieListData.postValue(Resource.loading(null))
         compositeDisposable.add(
             searchMovieRepository.searchByName(query)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    _movieListData.postValue(Resource.success(it))
+                    if (it.response.toString() == "False") {
+                        _movieListData.postValue(
+                            Resource.notFound(
+                                "Sorry, no movie found, try another title!",
+                                null
+                            )
+                        )
+                    } else {
+                        _movieListData.postValue(Resource.success(it))
+                    }
                 }, {
-                    _movieListData.postValue(Resource.error("Something Went Wrong", null))
+                    _movieListData.postValue(Resource.error("Something went wrong!", null))
                 })
         )
     }

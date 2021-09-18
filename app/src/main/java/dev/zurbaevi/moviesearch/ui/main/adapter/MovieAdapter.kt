@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.zurbaevi.moviesearch.data.model.MovieModel
-import dev.zurbaevi.moviesearch.databinding.MovieItemBinding
+import dev.zurbaevi.moviesearch.databinding.ItemMovieLayoutBinding
 
 class MovieAdapter(private val clickListener: OnItemClickListener) :
     ListAdapter<MovieModel, MovieAdapter.MovieViewHolder>(DiffUtilCallback) {
@@ -26,7 +26,7 @@ class MovieAdapter(private val clickListener: OnItemClickListener) :
         fun onItemClick(taskEntry: MovieModel)
     }
 
-    inner class MovieViewHolder(private val binding: MovieItemBinding) :
+    inner class MovieViewHolder(private val binding: ItemMovieLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -43,8 +43,8 @@ class MovieAdapter(private val clickListener: OnItemClickListener) :
         fun bind(movieModel: MovieModel) {
             binding.apply {
                 textViewTitle.text = movieModel.title
+                textViewType.text = movieModel.type
                 textViewYear.text = movieModel.year
-                textViewImdbId.text = movieModel.imdbID
                 Glide.with(imageViewPoster.context)
                     .load(movieModel.poster)
                     .into(imageViewPoster)
@@ -54,7 +54,7 @@ class MovieAdapter(private val clickListener: OnItemClickListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         MovieViewHolder(
-            MovieItemBinding.inflate(
+            ItemMovieLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
