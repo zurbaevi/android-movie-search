@@ -26,9 +26,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:maxLines="2"
             android:padding="8dp"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +50,7 @@
 
         <ImageView
             android:id="@+id/imageViewPoster"
-            android:layout_width="160dp"
+            android:layout_width="180dp"
             android:layout_height="230dp"
             android:layout_margin="18dp"
             android:layout_marginStart="16dp"
@@ -62,8 +63,8 @@
 
         <ImageView
             android:id="@+id/imageViewStar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginHorizontal="6dp"
             android:contentDescription="@string/content_description_icon_star"
             android:src="@drawable/ic_star"
@@ -73,8 +74,8 @@
 
         <ImageView
             android:id="@+id/imageViewTimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/content_description_icon_timer"
             android:src="@drawable/ic_timer"
@@ -84,8 +85,8 @@
 
         <ImageView
             android:id="@+id/imageViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/content_description_icon_date"
             android:src="@drawable/ic_date"
@@ -196,70 +197,68 @@
 
         <TextView
             android:id="@+id/textViewType"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/typeTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/typeTitle"
             app:layout_constraintTop_toTopOf="@+id/typeTitle"
             tools:text="Movie" />
 
         <TextView
             android:id="@+id/textViewBoxOffice"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/boxOfficeTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/boxOfficeTitle"
             app:layout_constraintTop_toTopOf="@+id/boxOfficeTitle"
             tools:text="100.000.000$" />
 
         <TextView
             android:id="@+id/textViewAwards"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewAwardsTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewAwardsTitle"
             app:layout_constraintTop_toTopOf="@+id/textViewAwardsTitle"
             tools:text="Awards" />
 
         <TextView
             android:id="@+id/textViewLanguage"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewLanguageTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewLanguageTitle"
             app:layout_constraintTop_toTopOf="@+id/textViewLanguageTitle"
             tools:text="English" />
 
         <TextView
             android:id="@+id/textViewProduction"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewProductionTitle"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewProductionTitle"
             app:layout_constraintTop_toTopOf="@+id/textViewProductionTitle"
             tools:text="Production" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="28dp"
-            android:backgroundTint="@color/color_background"
-            android:contentDescription="@string/content_description_fab_favorite"
-            android:src="@drawable/ic_favorite"
-            app:borderWidth="0dp"
-            app:elevation="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressBar"

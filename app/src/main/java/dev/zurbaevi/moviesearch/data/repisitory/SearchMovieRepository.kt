@@ -1,15 +1,12 @@
 package dev.zurbaevi.moviesearch.data.repisitory
 
 import dev.zurbaevi.moviesearch.data.api.ApiService
-import dev.zurbaevi.moviesearch.data.local.MovieDao
-import dev.zurbaevi.moviesearch.data.model.MovieModel
 import dev.zurbaevi.moviesearch.data.model.SearchModel
-import io.reactivex.Completable
-import io.reactivex.Observable
+import io.reactivex.Single
 
 class SearchMovieRepository(private val apiService: ApiService) {
 
-    fun searchByName(query: String): Observable<SearchModel> {
+    fun searchByName(query: String): Single<SearchModel> {
         return apiService.searchByName(query)
     }
 

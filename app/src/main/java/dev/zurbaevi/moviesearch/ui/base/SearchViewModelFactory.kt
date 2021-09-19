@@ -3,7 +3,6 @@ package dev.zurbaevi.moviesearch.ui.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.zurbaevi.moviesearch.data.api.ApiService
-import dev.zurbaevi.moviesearch.data.local.MovieDao
 import dev.zurbaevi.moviesearch.data.repisitory.SearchMovieRepository
 import dev.zurbaevi.moviesearch.ui.main.viewmodel.SearchViewModel
 

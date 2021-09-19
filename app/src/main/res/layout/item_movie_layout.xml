@@ -18,8 +18,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:background="@color/cardview_dark_background">
+            android:background="@color/color_card_background">
 
             <ImageView
                 android:id="@+id/imageViewPoster"
@@ -69,7 +68,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/imageViewPoster"
                 app:layout_constraintStart_toEndOf="@+id/imageViewPoster"
                 tools:text="Movie" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

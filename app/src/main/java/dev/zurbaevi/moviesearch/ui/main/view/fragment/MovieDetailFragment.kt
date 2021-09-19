@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
+import dev.zurbaevi.moviesearch.R
 import dev.zurbaevi.moviesearch.data.api.RetrofitBuilder
 import dev.zurbaevi.moviesearch.databinding.FragmentMovieDetailBinding
 import dev.zurbaevi.moviesearch.ui.base.MovieDetailViewModelFactory
@@ -53,9 +54,11 @@ class MovieDetailFragment : Fragment() {
                         textViewType.text = it.data?.type
                         textViewBoxOffice.text = it.data?.boxOffice
                         textViewLanguage.text = it.data?.language
+                        textViewAwards.text = it.data?.awards
                         textViewProduction.text = it.data?.production
                         Glide.with(imageViewPoster.context)
                             .load(it.data?.poster)
+                            .error(R.drawable.ic_image_error)
                             .into(imageViewPoster)
                         progressBar.visibility = View.GONE
                     }
@@ -64,7 +67,7 @@ class MovieDetailFragment : Fragment() {
                     }
                     Status.ERROR -> {
                         progressBar.visibility = View.GONE
-                        DynamicToast.makeWarning(
+                        DynamicToast.makeError(
                             requireContext(),
                             it.message,
                             Toast.LENGTH_LONG

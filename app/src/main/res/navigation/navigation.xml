@@ -3,22 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/favoriteFragment">
-
-    <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="dev.zurbaevi.moviesearch.ui.main.view.fragment.FavoriteFragment"
-        android:label="Favorite movies"
-        tools:layout="@layout/fragment_favorite" >
-        <action
-            android:id="@+id/action_favoriteFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-    </fragment>
+    app:startDestination="@id/searchFragment">
     <fragment
         android:id="@+id/searchFragment"
         android:name="dev.zurbaevi.moviesearch.ui.main.view.fragment.SearchFragment"
-        android:label="Search movies"
-        tools:layout="@layout/fragment_search" >
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
@@ -26,8 +16,8 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="dev.zurbaevi.moviesearch.ui.main.view.fragment.MovieDetailFragment"
-        android:label="Movie detail"
-        tools:layout="@layout/fragment_movie_detail" >
+        android:label="fragment_movie_detail"
+        tools:layout="@layout/fragment_movie_detail">
         <argument
             android:name="imdbID"
             app:argType="string" />
