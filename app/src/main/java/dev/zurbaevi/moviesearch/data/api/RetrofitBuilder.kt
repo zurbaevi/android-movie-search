@@ -1,12 +1,11 @@
 package dev.zurbaevi.moviesearch.data.api
 
+import dev.zurbaevi.moviesearch.data.Constants.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
-
-    private const val BASE_URL = "http://www.omdbapi.com/"
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
