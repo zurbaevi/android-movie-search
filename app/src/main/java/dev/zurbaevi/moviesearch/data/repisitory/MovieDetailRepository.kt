@@ -2,7 +2,7 @@ package dev.zurbaevi.moviesearch.data.repisitory
 
 import dev.zurbaevi.moviesearch.data.api.ApiService
 import dev.zurbaevi.moviesearch.data.model.MovieDetailModel
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 
 class MovieDetailRepository(private val apiService: ApiService) {
 

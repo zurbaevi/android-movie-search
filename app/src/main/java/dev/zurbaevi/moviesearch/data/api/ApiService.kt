@@ -3,7 +3,7 @@ package dev.zurbaevi.moviesearch.data.api
 import dev.zurbaevi.moviesearch.data.Constants
 import dev.zurbaevi.moviesearch.data.model.MovieDetailModel
 import dev.zurbaevi.moviesearch.data.model.SearchModel
-import io.reactivex.Single
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
