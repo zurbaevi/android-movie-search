@@ -18,8 +18,8 @@ ____
 - Kotlin
 - MVVM
 - Navigation Component
-- RxJava 2
-- RxAndroid 2
+- RxJava 3
+- RxAndroid 3
 
 ____
 
