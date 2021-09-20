@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/imageViewInfo"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@drawable/ic_movie"
         android:contentDescription="@string/content_description_info"
         android:visibility="visible"
@@ -49,12 +49,12 @@
         android:layout_height="wrap_content"
         android:text="@string/text_view_info"
         android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewInfo"
-        app:layout_constraintVertical_bias="0.05000000" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
