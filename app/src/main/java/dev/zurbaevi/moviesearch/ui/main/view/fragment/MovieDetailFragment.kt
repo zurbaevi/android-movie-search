@@ -14,7 +14,7 @@ import dev.zurbaevi.moviesearch.data.api.RetrofitBuilder
 import dev.zurbaevi.moviesearch.databinding.FragmentMovieDetailBinding
 import dev.zurbaevi.moviesearch.ui.base.MovieDetailViewModelFactory
 import dev.zurbaevi.moviesearch.ui.main.viewmodel.MovieDetailViewModel
-import dev.zurbaevi.moviesearch.utils.Status
+import dev.zurbaevi.moviesearch.utils.Resource
 
 
 class MovieDetailFragment : Fragment() {
@@ -44,7 +44,7 @@ class MovieDetailFragment : Fragment() {
         binding.apply {
             movieDetailViewModel.movieDetailData.observe(viewLifecycleOwner, {
                 when (it.status) {
-                    Status.SUCCESS -> {
+                    Resource.Status.SUCCESS -> {
                         textViewTitleDetail.text = it.data?.title
                         textViewGenreDetail.text = it.data?.genre
                         textViewStar.text = it.data?.rating
@@ -62,10 +62,10 @@ class MovieDetailFragment : Fragment() {
                             .into(imageViewPoster)
                         progressBar.visibility = View.GONE
                     }
-                    Status.LOADING -> {
+                    Resource.Status.LOADING -> {
                         progressBar.visibility = View.VISIBLE
                     }
-                    Status.ERROR -> {
+                    Resource.Status.ERROR -> {
                         progressBar.visibility = View.GONE
                         DynamicToast.makeError(
                             requireContext(),

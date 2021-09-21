@@ -16,7 +16,7 @@ import dev.zurbaevi.moviesearch.databinding.FragmentSearchBinding
 import dev.zurbaevi.moviesearch.ui.base.SearchViewModelFactory
 import dev.zurbaevi.moviesearch.ui.main.adapter.MovieAdapter
 import dev.zurbaevi.moviesearch.ui.main.viewmodel.SearchViewModel
-import dev.zurbaevi.moviesearch.utils.Status
+import dev.zurbaevi.moviesearch.utils.Resource
 
 
 class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
@@ -79,17 +79,17 @@ class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
         binding.apply {
             searchViewModel.movieListData.observe(viewLifecycleOwner, {
                 when (it.status) {
-                    Status.SUCCESS -> {
+                    Resource.Status.SUCCESS -> {
                         adapter.submitList(it.data?.movieEntityList)
                         progressBar.visibility = View.GONE
                         recyclerView.visibility = View.VISIBLE
                         screenInfoHide()
                     }
-                    Status.LOADING -> {
+                    Resource.Status.LOADING -> {
                         progressBar.visibility = View.VISIBLE
                         screenInfoHide()
                     }
-                    Status.ERROR -> {
+                    Resource.Status.ERROR -> {
                         screenInfoShow()
                         recyclerView.visibility = View.GONE
                         progressBar.visibility = View.GONE
