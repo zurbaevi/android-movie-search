@@ -1,4 +1,4 @@
-package dev.zurbaevi.moviesearch.ui.main.view.fragment
+package dev.zurbaevi.moviesearch.ui.view.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,22 +9,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
+import dagger.hilt.android.AndroidEntryPoint
 import dev.zurbaevi.moviesearch.R
-import dev.zurbaevi.moviesearch.data.api.RetrofitBuilder
 import dev.zurbaevi.moviesearch.databinding.FragmentMovieDetailBinding
-import dev.zurbaevi.moviesearch.ui.base.MovieDetailViewModelFactory
-import dev.zurbaevi.moviesearch.ui.main.viewmodel.MovieDetailViewModel
+import dev.zurbaevi.moviesearch.ui.viewmodel.MovieDetailViewModel
 import dev.zurbaevi.moviesearch.utils.Resource
 
-
+@AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val movieDetailViewModel by viewModels<MovieDetailViewModel> {
-        MovieDetailViewModelFactory(RetrofitBuilder.apiService)
-    }
+    private val movieDetailViewModel by viewModels<MovieDetailViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

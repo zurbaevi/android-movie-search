@@ -1,16 +1,19 @@
-package dev.zurbaevi.moviesearch.ui.main.viewmodel
+package dev.zurbaevi.moviesearch.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.zurbaevi.moviesearch.data.model.MovieDetailModel
 import dev.zurbaevi.moviesearch.data.repisitory.MovieDetailRepository
 import dev.zurbaevi.moviesearch.utils.Resource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class MovieDetailViewModel(private val detailMovieDetailRepository: MovieDetailRepository) :
+@HiltViewModel
+class MovieDetailViewModel @Inject constructor(private val detailMovieDetailRepository: MovieDetailRepository) :
     ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()

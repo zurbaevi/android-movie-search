@@ -1,4 +1,4 @@
-package dev.zurbaevi.moviesearch.ui.main.view.fragment
+package dev.zurbaevi.moviesearch.ui.view.fragment
 
 import android.app.Activity
 import android.os.Bundle
@@ -10,23 +10,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
+import dagger.hilt.android.AndroidEntryPoint
 import dev.zurbaevi.moviesearch.R
-import dev.zurbaevi.moviesearch.data.api.RetrofitBuilder
 import dev.zurbaevi.moviesearch.databinding.FragmentSearchBinding
-import dev.zurbaevi.moviesearch.ui.base.SearchViewModelFactory
-import dev.zurbaevi.moviesearch.ui.main.adapter.MovieAdapter
-import dev.zurbaevi.moviesearch.ui.main.viewmodel.SearchViewModel
+import dev.zurbaevi.moviesearch.ui.adapter.MovieAdapter
+import dev.zurbaevi.moviesearch.ui.viewmodel.SearchViewModel
 import dev.zurbaevi.moviesearch.utils.Resource
 
-
+@AndroidEntryPoint
 class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
-    private val searchViewModel by viewModels<SearchViewModel> {
-        SearchViewModelFactory(RetrofitBuilder.apiService)
-    }
+    private val searchViewModel by viewModels<SearchViewModel>()
 
     private val adapter: MovieAdapter by lazy {
         MovieAdapter(this)

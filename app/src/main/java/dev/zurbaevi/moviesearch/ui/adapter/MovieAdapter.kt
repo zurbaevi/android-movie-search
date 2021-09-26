@@ -1,4 +1,4 @@
-package dev.zurbaevi.moviesearch.ui.main.adapter
+package dev.zurbaevi.moviesearch.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

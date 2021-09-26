@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_background"
-    tools:context=".ui.main.view.fragment.SearchFragment">
+    tools:context=".ui.view.fragment.SearchFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/imageViewInfo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:background="@drawable/ic_movie"
         android:contentDescription="@string/content_description_info"
         android:visibility="visible"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:text="@string/text_view_info"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
