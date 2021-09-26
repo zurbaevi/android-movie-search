@@ -21,6 +21,7 @@ ____
 - Navigation Component
 - RxJava 3
 - RxAndroid 3
+- Hilt
 
 ____
 
