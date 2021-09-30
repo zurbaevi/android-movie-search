@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.zurbaevi.moviesearch.data.model.SearchModel
-import dev.zurbaevi.moviesearch.data.repisitory.SearchMovieRepository
+import dev.zurbaevi.moviesearch.data.repisitory.MovieRepository
 import dev.zurbaevi.moviesearch.utils.Resource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val searchMovieRepository: SearchMovieRepository) :
+class SearchViewModel @Inject constructor(private val movieRepository: MovieRepository) :
     ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -25,7 +25,7 @@ class SearchViewModel @Inject constructor(private val searchMovieRepository: Sea
     fun searchByName(query: String) {
         _movieListData.postValue(Resource.loading(null))
         compositeDisposable.add(
-            searchMovieRepository.searchByName(query)
+            movieRepository.searchByName(query)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -46,5 +46,4 @@ class SearchViewModel @Inject constructor(private val searchMovieRepository: Sea
         super.onCleared()
         compositeDisposable.dispose()
     }
-
 }

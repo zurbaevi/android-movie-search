@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.zurbaevi.moviesearch.data.model.MovieDetailModel
-import dev.zurbaevi.moviesearch.data.repisitory.MovieDetailRepository
+import dev.zurbaevi.moviesearch.data.repisitory.MovieRepository
 import dev.zurbaevi.moviesearch.utils.Resource
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieDetailViewModel @Inject constructor(private val detailMovieDetailRepository: MovieDetailRepository) :
+class MovieDetailViewModel @Inject constructor(private val movieRepository: MovieRepository) :
     ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -25,7 +25,7 @@ class MovieDetailViewModel @Inject constructor(private val detailMovieDetailRepo
     fun searchById(query: String) {
         _movieDetailData.postValue(Resource.loading(null))
         compositeDisposable.add(
-            detailMovieDetailRepository.searchById(query)
+            movieRepository.searchById(query)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -45,5 +45,4 @@ class MovieDetailViewModel @Inject constructor(private val detailMovieDetailRepo
         super.onCleared()
         compositeDisposable.dispose()
     }
-
 }

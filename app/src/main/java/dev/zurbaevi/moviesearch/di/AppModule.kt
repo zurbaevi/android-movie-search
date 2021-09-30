@@ -25,7 +25,7 @@ object AppModule {
         Interceptor { chain ->
             val original = chain.request()
             val httpUrl = original.url.newBuilder()
-                .addQueryParameter("api_key", BuildConfig.API_KEY)
+                .addQueryParameter("apikey", BuildConfig.API_KEY)
                 .build()
             val requestBuilder: Request.Builder = original.newBuilder()
                 .url(httpUrl)

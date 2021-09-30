@@ -73,6 +73,9 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // View Binding property delegate
+    implementation "com.github.kirich1409:viewbindingpropertydelegate:$view_binding_property_delegate_version"
 }
 
 kapt {

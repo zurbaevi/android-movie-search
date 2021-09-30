@@ -38,6 +38,5 @@ data class MovieDetailModel(
     var language: String = "",
 
     @SerializedName("Production")
-    var production: String = ""
-
+    var production: String = "",
 )

@@ -17,6 +17,5 @@ data class MovieModel(
     var type: String = "",
 
     @SerializedName("Poster")
-    var poster: String = ""
-
+    var poster: String = "",
 )

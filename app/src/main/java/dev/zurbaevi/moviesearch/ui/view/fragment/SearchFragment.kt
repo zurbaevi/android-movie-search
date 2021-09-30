@@ -2,13 +2,16 @@ package dev.zurbaevi.moviesearch.ui.view.fragment
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.pranavpandey.android.dynamic.toasts.DynamicToast
 import dagger.hilt.android.AndroidEntryPoint
 import dev.zurbaevi.moviesearch.R
@@ -18,23 +21,14 @@ import dev.zurbaevi.moviesearch.ui.viewmodel.SearchViewModel
 import dev.zurbaevi.moviesearch.utils.Resource
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
+class SearchFragment : Fragment(R.layout.fragment_search), MovieAdapter.OnItemClickListener {
 
-    private var _binding: FragmentSearchBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentSearchBinding by viewBinding()
 
     private val searchViewModel by viewModels<SearchViewModel>()
 
     private val adapter: MovieAdapter by lazy {
         MovieAdapter(this)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentSearchBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -124,5 +118,4 @@ class SearchFragment : Fragment(), MovieAdapter.OnItemClickListener {
             requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
-
 }

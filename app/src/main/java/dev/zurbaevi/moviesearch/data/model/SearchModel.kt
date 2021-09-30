@@ -11,6 +11,5 @@ data class SearchModel(
     var totalResults: String? = null,
 
     @SerializedName("Response")
-    var response: String? = null
-
+    var response: String? = null,
 )
