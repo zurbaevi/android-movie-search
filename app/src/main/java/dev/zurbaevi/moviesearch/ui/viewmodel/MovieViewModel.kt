@@ -1,0 +1,48 @@
+package dev.zurbaevi.moviesearch.ui.viewmodel
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.rxjava3.cachedIn
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.zurbaevi.moviesearch.data.model.Movie
+import dev.zurbaevi.moviesearch.data.repisitory.MovieRepository
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import javax.inject.Inject
+
+@HiltViewModel
+class MovieViewModel @Inject constructor(
+    private val repository: MovieRepository,
+) : ViewModel() {
+
+    private val compositeDisposable = CompositeDisposable()
+
+    private val _movies = MutableLiveData<PagingData<Movie>>()
+    val movies: LiveData<PagingData<Movie>> get() = _movies
+
+    init {
+        compositeDisposable.add(
+            repository.getNowPlayingMovies()
+                .cachedIn(viewModelScope)
+                .subscribe {
+                    _movies.value = it
+                }
+        )
+    }
+
+    fun searchMovies(query: String) {
+        repository.getSearchMovies(query)
+            .cachedIn(viewModelScope)
+            .subscribe {
+                _movies.value = it
+            }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
+    }
+
+}

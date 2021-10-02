@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs'
     id 'dagger.hilt.android.plugin'
 }
@@ -18,7 +19,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "API_KEY", "\"86d7a3ae\""
+        buildConfigField "String", "API_KEY", "\"0c9b931b48c27dd3b7968548bd159bae\""
     }
 
     buildFeatures {
@@ -41,6 +42,7 @@ android {
 }
 
 dependencies {
+    // Default dependencies
     implementation "androidx.core:core-ktx:$core_ktx_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$material_version"
@@ -76,6 +78,10 @@ dependencies {
 
     // View Binding property delegate
     implementation "com.github.kirich1409:viewbindingpropertydelegate:$view_binding_property_delegate_version"
+
+    // Paging 3
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
 }
 
 kapt {

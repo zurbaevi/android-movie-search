@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/searchFragment">
+    app:startDestination="@id/movieFragment">
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="dev.zurbaevi.moviesearch.ui.view.fragment.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search">
+        android:id="@+id/movieFragment"
+        android:name="dev.zurbaevi.moviesearch.ui.view.fragment.MovieFragment"
+        android:label="Movie Search"
+        tools:layout="@layout/fragment_movie">
         <action
-            android:id="@+id/action_searchFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            android:id="@+id/action_movieFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/movieDetailFragment"
-        android:name="dev.zurbaevi.moviesearch.ui.view.fragment.MovieDetailFragment"
-        android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail">
+        android:id="@+id/detailsFragment"
+        android:name="dev.zurbaevi.moviesearch.ui.view.fragment.DetailsFragment"
+        android:label="Movie Details"
+        tools:layout="@layout/fragment_details">
         <argument
-            android:name="imdbID"
-            app:argType="string" />
+            android:name="movie"
+            app:argType="dev.zurbaevi.moviesearch.data.model.Movie" />
     </fragment>
 </navigation>

@@ -1,20 +1,33 @@
 package dev.zurbaevi.moviesearch.data.repisitory
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.rxjava3.flowable
 import dev.zurbaevi.moviesearch.data.api.ApiService
-import dev.zurbaevi.moviesearch.data.model.MovieDetailModel
-import dev.zurbaevi.moviesearch.data.model.SearchModel
-import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class MovieRepository @Inject constructor(private val apiService: ApiService) {
 
-    fun searchById(query: String): Single<MovieDetailModel> {
-        return apiService.searchById(query)
-    }
+    fun getNowPlayingMovies() =
+        Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                maxSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { MoviePagingSource(apiService, null) }
+        ).flowable
 
-    fun searchByName(query: String): Single<SearchModel> {
-        return apiService.searchByName(query)
-    }
+    fun getSearchMovies(query: String) =
+        Pager(
+            config = PagingConfig(
+                pageSize = 5,
+                maxSize = 20,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = { MoviePagingSource(apiService, query) }
+        ).flowable
+
 }

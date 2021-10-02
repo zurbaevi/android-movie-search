@@ -2,70 +2,68 @@ package dev.zurbaevi.moviesearch.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import dev.zurbaevi.moviesearch.R
-import dev.zurbaevi.moviesearch.data.model.MovieModel
-import dev.zurbaevi.moviesearch.databinding.ItemMovieLayoutBinding
+import dev.zurbaevi.moviesearch.data.model.Movie
+import dev.zurbaevi.moviesearch.databinding.ItemMovieBinding
 
-class MovieAdapter(private val clickListener: OnItemClickListener) :
-    ListAdapter<MovieModel, MovieAdapter.MovieViewHolder>(DiffUtilCallback) {
+class MovieAdapter(private val listener: OnItemClickListener) :
+    PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback) {
 
-    object DiffUtilCallback : DiffUtil.ItemCallback<MovieModel>() {
-        override fun areItemsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
-            return oldItem == newItem
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return MovieViewHolder(binding)
+    }
 
-        override fun areContentsTheSame(oldItem: MovieModel, newItem: MovieModel): Boolean {
-            return oldItem == newItem
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        val currentItem = getItem(position)
+        if (currentItem != null) {
+            holder.bind(currentItem)
         }
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(imdbID: String)
-    }
-
-    inner class MovieViewHolder(private val binding: ItemMovieLayoutBinding) :
+    inner class MovieViewHolder(private val binding: ItemMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.apply {
-                root.setOnClickListener {
-                    val position = adapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        clickListener.onItemClick(getItem(position).imdbID)
+            binding.root.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onItemClick(item)
                     }
                 }
             }
         }
 
-        fun bind(movieModel: MovieModel) {
-            binding.apply {
-                textViewTitle.text = movieModel.title
-                textViewType.text = movieModel.type
-                textViewYear.text = movieModel.year
-                Glide.with(imageViewPoster.context)
-                    .load(movieModel.poster)
+        fun bind(movie: Movie) {
+            with(binding) {
+                Glide.with(itemView)
+                    .load("${movie.baseUrl}${movie.poster_path}")
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_image_error)
                     .into(imageViewPoster)
+                textViewTitle.text = movie.original_title
+                textViewOverview.text = movie.overview
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        MovieViewHolder(
-            ItemMovieLayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+    interface OnItemClickListener {
+        fun onItemClick(movie: Movie)
+    }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) =
-        holder.bind(getItem(position))
+    object MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
+        override fun areItemsTheSame(oldItem: Movie, newItem: Movie) =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: Movie, newItem: Movie) = oldItem == newItem
+    }
+
 }

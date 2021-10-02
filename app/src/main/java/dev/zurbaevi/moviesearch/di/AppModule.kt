@@ -25,7 +25,7 @@ object AppModule {
         Interceptor { chain ->
             val original = chain.request()
             val httpUrl = original.url.newBuilder()
-                .addQueryParameter("apikey", BuildConfig.API_KEY)
+                .addQueryParameter("api_key", BuildConfig.API_KEY)
                 .build()
             val requestBuilder: Request.Builder = original.newBuilder()
                 .url(httpUrl)
@@ -42,14 +42,18 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): ApiService {
-        return Retrofit.Builder()
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
-            .create(ApiService::class.java)
-    }
+
+
+    @Singleton
+    @Provides
+    fun provideApiService(retrofit: Retrofit): ApiService =
+        retrofit.create(ApiService::class.java)
 
 }
