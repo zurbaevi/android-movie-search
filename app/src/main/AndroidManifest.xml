@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieSearch">
         <activity
-            android:name="dev.zurbaevi.moviesearch.ui.view.acitivty.MovieActivity"
+            android:name="dev.zurbaevi.moviesearch.ui.view.activity.MovieActivity"
             android:exported="true"
             android:theme="@style/Theme.MovieSearch">
             <intent-filter>
