@@ -69,10 +69,8 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
         setHasOptionsMenu(true)
     }
 
-    override fun onItemClick(movie: Movie) {
-        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToDetailsFragment(
-            movie))
-    }
+    override fun onItemClick(movie: Movie) =
+        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToDetailsFragment(movie))
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

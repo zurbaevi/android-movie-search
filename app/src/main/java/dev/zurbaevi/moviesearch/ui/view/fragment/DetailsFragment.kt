@@ -29,7 +29,7 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
         binding.apply {
             val movie = args.movie
             Glide.with(this@DetailsFragment)
-                .load("${movie.baseUrl}${movie.poster_path}")
+                .load("${movie.baseUrl}${movie.posterPath}")
                 .error(R.drawable.ic_image_error)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
@@ -56,8 +56,9 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                     }
                 })
                 .into(imageViewMoviePoster)
+
             textViewMovieDescription.text = movie.overview
-            textViewMovieTitle.text = movie.original_title
+            textViewMovieTitle.text = movie.originalTitle
         }
     }
 

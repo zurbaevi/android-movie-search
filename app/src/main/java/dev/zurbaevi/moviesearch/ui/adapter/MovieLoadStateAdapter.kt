@@ -11,32 +11,33 @@ import dev.zurbaevi.moviesearch.databinding.MovieLoadStateFooterBinding
 class MovieLoadStateAdapter(private val retry: () -> Unit) :
     LoadStateAdapter<MovieLoadStateAdapter.LoadStateViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder {
-        val binding =
-            MovieLoadStateFooterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return LoadStateViewHolder(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, loadState: LoadState): LoadStateViewHolder =
+        LoadStateViewHolder(
+            MovieLoadStateFooterBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
+        )
 
-    override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
+    override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) =
         holder.bind(loadState)
-    }
 
     inner class LoadStateViewHolder(private val binding: MovieLoadStateFooterBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.btnRetry.setOnClickListener {
+            binding.buttonRetry.setOnClickListener {
                 retry.invoke()
             }
         }
 
-        fun bind(loadState: LoadState) {
+        fun bind(loadState: LoadState) =
             with(binding) {
                 progressBar.isVisible = loadState is LoadState.Loading
-                btnRetry.isVisible = loadState !is LoadState.Loading
-                tvError.isVisible = loadState !is LoadState.Loading
+                buttonRetry.isVisible = loadState !is LoadState.Loading
+                textViewError.isVisible = loadState !is LoadState.Loading
             }
-        }
+
     }
 
 }

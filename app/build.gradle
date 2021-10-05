@@ -56,14 +56,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_login_interceptor_version"
 
     // Navigation component
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-
-    // Dynamic toast version
-    implementation "com.pranavpandey.android:dynamic-toasts:$dynamic_toast_version"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"

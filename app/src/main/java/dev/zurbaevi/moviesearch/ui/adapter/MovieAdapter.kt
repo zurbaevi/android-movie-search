@@ -14,10 +14,13 @@ import dev.zurbaevi.moviesearch.databinding.ItemMovieBinding
 class MovieAdapter(private val listener: OnItemClickListener) :
     PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return MovieViewHolder(binding)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
+        MovieViewHolder(
+            ItemMovieBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false)
+        )
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val currentItem = getItem(position)
@@ -41,18 +44,18 @@ class MovieAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-        fun bind(movie: Movie) {
+        fun bind(movie: Movie) =
             with(binding) {
                 Glide.with(itemView)
-                    .load("${movie.baseUrl}${movie.poster_path}")
+                    .load("${movie.baseUrl}${movie.posterPath}")
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_image_error)
                     .into(imageViewPoster)
-                textViewTitle.text = movie.original_title
+                textViewTitle.text = movie.originalTitle
                 textViewOverview.text = movie.overview
             }
-        }
+
     }
 
     interface OnItemClickListener {
