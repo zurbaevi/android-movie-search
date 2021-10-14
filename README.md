@@ -22,6 +22,7 @@ ____
 - RxJava 3
 - RxAndroid 3
 - Hilt
+- Retrofit
 - Paging 3
 
 ____
