@@ -23,13 +23,7 @@ class MovieViewModel @Inject constructor(
     val movies: LiveData<PagingData<Movie>> get() = _movies
 
     init {
-        compositeDisposable.add(
-            repository.getNowPlayingMovies()
-                .cachedIn(viewModelScope)
-                .subscribe {
-                    _movies.value = it
-                }
-        )
+        getNowPlayingMovies()
     }
 
     fun searchMovies(query: String) {
@@ -38,6 +32,16 @@ class MovieViewModel @Inject constructor(
             .subscribe {
                 _movies.value = it
             }
+    }
+
+    fun getNowPlayingMovies() {
+        compositeDisposable.add(
+            repository.getNowPlayingMovies()
+                .cachedIn(viewModelScope)
+                .subscribe {
+                    _movies.value = it
+                }
+        )
     }
 
     override fun onCleared() {

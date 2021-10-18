@@ -42,6 +42,10 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
             buttonTryAgain.setOnClickListener {
                 adapter.retry()
             }
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel.getNowPlayingMovies()
+                swipeRefreshLayout.isRefreshing = false
+            }
         }
 
         viewModel.movies.observe(viewLifecycleOwner) {
@@ -70,7 +74,11 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
     }
 
     override fun onItemClick(movie: Movie) =
-        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToDetailsFragment(movie))
+        findNavController().navigate(
+            MovieFragmentDirections.actionMovieFragmentToDetailsFragment(
+                movie
+            )
+        )
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)

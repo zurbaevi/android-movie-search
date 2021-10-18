@@ -20,6 +20,7 @@ buildscript {
         okhttp_version = "4.9.1"
         view_binding_property_delegate_version = "1.4.7"
         paging_version = "3.0.1"
+        swipe_version = "1.1.0"
     }
     repositories {
         google()
