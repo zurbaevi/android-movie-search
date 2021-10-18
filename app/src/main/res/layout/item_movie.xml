@@ -50,14 +50,23 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:fontFamily="@font/actor"
-            android:maxLines="6"
+            android:maxLines="4"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewPoster"
-            app:layout_constraintEnd_toEndOf="@+id/textViewTitle"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDate"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewPoster"
             app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
             tools:text="@tools:sample/lorem/random" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFC107"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewPoster"
+            app:layout_constraintEnd_toEndOf="@+id/textViewTitle"
+            tools:text="2021-09-30" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

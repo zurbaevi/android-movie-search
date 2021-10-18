@@ -19,7 +19,8 @@ class MovieAdapter(private val listener: OnItemClickListener) :
             ItemMovieBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false)
+                false
+            )
         )
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -54,6 +55,7 @@ class MovieAdapter(private val listener: OnItemClickListener) :
                     .into(imageViewPoster)
                 textViewTitle.text = movie.originalTitle
                 textViewOverview.text = movie.overview
+                textViewDate.text = movie.releaseDate
             }
 
     }
