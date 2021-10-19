@@ -5,7 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.zurbaevi.moviesearch.BuildConfig
-import dev.zurbaevi.moviesearch.data.Constants
 import dev.zurbaevi.moviesearch.data.api.ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -44,7 +43,7 @@ object AppModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(ApiService.BASE_URL)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)

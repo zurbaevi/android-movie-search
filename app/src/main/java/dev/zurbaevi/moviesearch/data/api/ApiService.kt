@@ -6,6 +6,10 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    companion object {
+        const val BASE_URL = "https://api.themoviedb.org/3/"
+    }
+
     @GET("movie/now_playing")
     fun getNowPlayingMovies(
         @Query("page") position: Int,
