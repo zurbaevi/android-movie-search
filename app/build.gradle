@@ -75,9 +75,6 @@ dependencies {
     // Paging 3
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     implementation "androidx.paging:paging-rxjava3:$paging_version"
-
-
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }
 
 kapt {
