@@ -72,15 +72,12 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-    // View Binding property delegate
-    implementation "com.github.kirich1409:viewbindingpropertydelegate:$view_binding_property_delegate_version"
-
     // Paging 3
     implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     implementation "androidx.paging:paging-rxjava3:$paging_version"
 
-    // Swipe refresh layout
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_version"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.7'
 }
 
 kapt {
