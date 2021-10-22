@@ -15,6 +15,10 @@ import dev.zurbaevi.moviesearch.databinding.FragmentMovieBinding
 import dev.zurbaevi.moviesearch.ui.adapter.MovieAdapter
 import dev.zurbaevi.moviesearch.ui.adapter.MovieLoadStateAdapter
 import dev.zurbaevi.moviesearch.ui.viewmodel.MovieViewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClickListener {
@@ -86,17 +90,23 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
         inflater.inflate(R.menu.menu, menu)
         val searchItem = menu.findItem(R.id.menuSearch)
         val searchView = searchItem.actionView as SearchView
+        var job: Job? = null
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                if (query != null) {
-                    binding.recyclerView.scrollToPosition(0)
-                    viewModel.searchMovies(query)
-                    searchView.clearFocus()
-                }
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                job?.cancel()
+                job = MainScope().launch {
+                    newText?.let {
+                        delay(1000)
+                        if (newText.isNotEmpty()) {
+                            binding.recyclerView.scrollToPosition(0)
+                            viewModel.searchMovies(newText)
+                        }
+                    }
+                }
                 return true
             }
         })
