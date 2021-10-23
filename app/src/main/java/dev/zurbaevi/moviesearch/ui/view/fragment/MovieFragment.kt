@@ -100,7 +100,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
                 job?.cancel()
                 job = MainScope().launch {
                     newText?.let {
-                        delay(1000)
+                        delay(500)
                         if (newText.isNotEmpty()) {
                             binding.recyclerView.scrollToPosition(0)
                             viewModel.searchMovies(newText)
