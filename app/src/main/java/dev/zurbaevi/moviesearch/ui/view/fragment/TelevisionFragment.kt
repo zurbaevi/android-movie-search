@@ -13,30 +13,31 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import dev.zurbaevi.moviesearch.R
-import dev.zurbaevi.moviesearch.data.model.Movie
-import dev.zurbaevi.moviesearch.databinding.FragmentMovieBinding
-import dev.zurbaevi.moviesearch.ui.adapter.MovieAdapter
+import dev.zurbaevi.moviesearch.data.model.Television
+import dev.zurbaevi.moviesearch.databinding.FragmentTelevisionBinding
 import dev.zurbaevi.moviesearch.ui.adapter.MovieLoadStateAdapter
-import dev.zurbaevi.moviesearch.ui.viewmodel.MovieViewModel
+import dev.zurbaevi.moviesearch.ui.adapter.TelevisionAdapter
+import dev.zurbaevi.moviesearch.ui.viewmodel.TelevisionViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClickListener {
+class TelevisionFragment : Fragment(R.layout.fragment_television),
+    TelevisionAdapter.OnItemClickListener {
 
-    private var _binding: FragmentMovieBinding? = null
+    private var _binding: FragmentTelevisionBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<MovieViewModel>()
+    private val viewModel by viewModels<TelevisionViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = FragmentMovieBinding.bind(view)
+        _binding = FragmentTelevisionBinding.bind(view)
 
-        val adapter = MovieAdapter(this)
+        val adapter = TelevisionAdapter(this)
 
         binding.apply {
             recyclerView.setHasFixedSize(true)
@@ -55,7 +56,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
             }
         }
 
-        viewModel.movies.observe(viewLifecycleOwner) {
+        viewModel.tv.observe(viewLifecycleOwner) {
             adapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
 
@@ -98,7 +99,7 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
                         delay(500)
                         if (newText.isNotEmpty()) {
                             binding.recyclerView.scrollToPosition(0)
-                            viewModel.searchMovies(newText)
+                            viewModel.searchTelevision(newText)
                         }
                     }
                 }
@@ -107,13 +108,16 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
         })
     }
 
-    override fun onItemClick(movie: Movie) {
-        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToDetailsFragment(movie))
+    override fun onItemClick(television: Television) {
+        findNavController().navigate(
+            TelevisionFragmentDirections.actionTelevisionFragmentToTelevisionDetailsFragment(
+                television
+            )
+        )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

@@ -7,48 +7,43 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.zurbaevi.moviesearch.data.model.Movie
-import dev.zurbaevi.moviesearch.data.repisitory.MovieRepository
+import dev.zurbaevi.moviesearch.data.model.Television
+import dev.zurbaevi.moviesearch.data.repisitory.TelevisionRepository
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
-    private val repository: MovieRepository,
+class TelevisionViewModel @Inject constructor(
+    private val repository: TelevisionRepository
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
 
-    private val _movies = MutableLiveData<PagingData<Movie>>()
-    val movies: LiveData<PagingData<Movie>> get() = _movies
+    private val _tv = MutableLiveData<PagingData<Television>>()
+    val tv: LiveData<PagingData<Television>> get() = _tv
 
     init {
-        getNowPlayingMovies()
+        getTelevisionPopular()
     }
 
-    fun searchMovies(query: String) {
+    private fun getTelevisionPopular() {
         compositeDisposable.add(
-            repository.searchMovies(query)
+            repository.getTvPopular()
                 .cachedIn(viewModelScope)
                 .subscribe {
-                    _movies.value = it
+                    _tv.value = it
                 }
         )
     }
 
-    private fun getNowPlayingMovies() {
+    fun searchTelevision(query: String) {
         compositeDisposable.add(
-            repository.getNowPlayingMovies()
+            repository.searchTv(query)
                 .cachedIn(viewModelScope)
                 .subscribe {
-                    _movies.value = it
+                    _tv.value = it
                 }
         )
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        compositeDisposable.dispose()
     }
 
 }

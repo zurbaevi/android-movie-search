@@ -21,4 +21,15 @@ interface ApiService {
         @Query("page") page: Int,
     ): Single<MovieResponse>
 
+    @GET("tv/popular")
+    fun getTelevisionPopular(
+        @Query("page") position: Int,
+    ): Single<TelevisionResponse>
+
+    @GET("search/tv")
+    fun searchTelevision(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+    ): Single<TelevisionResponse>
+
 }

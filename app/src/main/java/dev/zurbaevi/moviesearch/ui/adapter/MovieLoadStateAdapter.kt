@@ -16,7 +16,8 @@ class MovieLoadStateAdapter(private val retry: () -> Unit) :
             MovieLoadStateFooterBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false)
+                false
+            )
         )
 
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) =

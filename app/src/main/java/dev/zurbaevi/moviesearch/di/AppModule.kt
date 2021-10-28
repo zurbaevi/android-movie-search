@@ -49,7 +49,6 @@ object AppModule {
             .client(okHttpClient)
             .build()
 
-
     @Singleton
     @Provides
     fun provideApiService(retrofit: Retrofit): ApiService =

@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import dev.zurbaevi.moviesearch.R
-import dev.zurbaevi.moviesearch.data.model.Movie
+import dev.zurbaevi.moviesearch.data.model.Television
 import dev.zurbaevi.moviesearch.databinding.ItemRowBinding
 
-class MovieAdapter(private val listener: OnItemClickListener) :
-    PagingDataAdapter<Movie, MovieAdapter.MovieViewHolder>(MovieDiffCallback) {
+class TelevisionAdapter(private val listener: OnItemClickListener) :
+    PagingDataAdapter<Television, TelevisionAdapter.TelevisionViewHolder>(TelevisionDiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder =
-        MovieViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TelevisionViewHolder =
+        TelevisionViewHolder(
             ItemRowBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -23,14 +23,14 @@ class MovieAdapter(private val listener: OnItemClickListener) :
             )
         )
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TelevisionViewHolder, position: Int) {
         val currentItem = getItem(position)
         if (currentItem != null) {
             holder.bind(currentItem)
         }
     }
 
-    inner class MovieViewHolder(private val binding: ItemRowBinding) :
+    inner class TelevisionViewHolder(private val binding: ItemRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -45,29 +45,30 @@ class MovieAdapter(private val listener: OnItemClickListener) :
             }
         }
 
-        fun bind(movie: Movie) =
+        fun bind(television: Television) =
             with(binding) {
                 Glide.with(itemView)
-                    .load("${movie.baseUrl}${movie.posterPath}")
+                    .load("${television.baseUrl}${television.posterPath}")
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_image_error)
                     .into(imageViewPoster)
-                textViewTitle.text = movie.originalTitle
-                textViewOverview.text = movie.overview
+                textViewTitle.text = television.name
+                textViewOverview.text = television.overview
             }
 
     }
 
     interface OnItemClickListener {
-        fun onItemClick(movie: Movie)
+        fun onItemClick(television: Television)
     }
 
-    object MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
-        override fun areItemsTheSame(oldItem: Movie, newItem: Movie) =
+    object TelevisionDiffCallback : DiffUtil.ItemCallback<Television>() {
+        override fun areItemsTheSame(oldItem: Television, newItem: Television) =
             oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Movie, newItem: Movie) = oldItem == newItem
+        override fun areContentsTheSame(oldItem: Television, newItem: Television) =
+            oldItem == newItem
     }
 
 }

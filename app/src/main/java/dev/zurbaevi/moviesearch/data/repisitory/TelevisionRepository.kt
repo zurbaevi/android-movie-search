@@ -8,28 +8,28 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class MovieRepository @Inject constructor(
+class TelevisionRepository @Inject constructor(
     private val apiService: ApiService,
 ) {
 
-    fun getNowPlayingMovies() =
+    fun getTvPopular() =
         Pager(
             config = PagingConfig(
                 pageSize = 5,
                 maxSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { MoviePagingSource(apiService, null) }
+            pagingSourceFactory = { TelevisionPagingSource(apiService, null) }
         ).flowable
 
-    fun searchMovies(query: String) =
+    fun searchTv(query: String) =
         Pager(
             config = PagingConfig(
                 pageSize = 5,
                 maxSize = 20,
                 enablePlaceholders = false
             ),
-            pagingSourceFactory = { MoviePagingSource(apiService, query) }
+            pagingSourceFactory = { TelevisionPagingSource(apiService, query) }
         ).flowable
 
 }

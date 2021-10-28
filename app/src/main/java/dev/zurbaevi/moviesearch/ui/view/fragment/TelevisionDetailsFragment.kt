@@ -2,9 +2,7 @@ package dev.zurbaevi.moviesearch.ui.view.fragment
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -15,32 +13,25 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
 import dev.zurbaevi.moviesearch.R
-import dev.zurbaevi.moviesearch.databinding.FragmentDetailsBinding
+import dev.zurbaevi.moviesearch.databinding.FragmentMovieDetailsBinding
 
 @AndroidEntryPoint
-class DetailsFragment : Fragment(R.layout.fragment_details) {
+class TelevisionDetailsFragment : Fragment(R.layout.fragment_movie_details) {
 
-    private var _binding: FragmentDetailsBinding? = null
+    private var _binding: FragmentMovieDetailsBinding? = null
     private val binding get() = _binding!!
 
-    private val args by navArgs<DetailsFragmentArgs>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val args by navArgs<TelevisionDetailsFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        _binding = FragmentMovieDetailsBinding.bind(view)
+
         binding.apply {
-            val movie = args.movie
-            Glide.with(this@DetailsFragment)
-                .load("${movie.baseUrl}${movie.posterPath}")
+            val television = args.television
+            Glide.with(this@TelevisionDetailsFragment)
+                .load("${television.baseUrl}${television.posterPath}")
                 .error(R.drawable.ic_image_error)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
@@ -68,14 +59,15 @@ class DetailsFragment : Fragment(R.layout.fragment_details) {
                 })
                 .into(imageViewMoviePoster)
 
-            textViewMovieDescription.text = movie.overview
-            textViewMovieTitle.text = movie.originalTitle
+            textViewMovieDescription.text = television.overview
+            textViewMovieTitle.text = television.name
         }
+
+        setHasOptionsMenu(true)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
