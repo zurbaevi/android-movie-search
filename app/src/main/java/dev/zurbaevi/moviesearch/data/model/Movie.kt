@@ -12,6 +12,4 @@ data class Movie(
     val posterPath: String,
     @SerializedName("original_title")
     val originalTitle: String,
-) : Parcelable {
-    val baseUrl get() = "https://image.tmdb.org/t/p/w500"
-}
+) : Parcelable

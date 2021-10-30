@@ -13,6 +13,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
 import dev.zurbaevi.moviesearch.R
+import dev.zurbaevi.moviesearch.data.api.ApiService
 import dev.zurbaevi.moviesearch.databinding.FragmentMovieDetailsBinding
 
 @AndroidEntryPoint
@@ -31,7 +32,7 @@ class TelevisionDetailsFragment : Fragment(R.layout.fragment_movie_details) {
         binding.apply {
             val television = args.television
             Glide.with(this@TelevisionDetailsFragment)
-                .load("${television.baseUrl}${television.posterPath}")
+                .load("${ApiService.IMAGE_BASE_URL}${television.posterPath}")
                 .error(R.drawable.ic_image_error)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(

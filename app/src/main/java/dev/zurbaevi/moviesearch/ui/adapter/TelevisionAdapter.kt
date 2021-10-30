@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import dev.zurbaevi.moviesearch.R
+import dev.zurbaevi.moviesearch.data.api.ApiService
 import dev.zurbaevi.moviesearch.data.model.Television
 import dev.zurbaevi.moviesearch.databinding.ItemRowBinding
 
@@ -48,7 +49,7 @@ class TelevisionAdapter(private val listener: OnItemClickListener) :
         fun bind(television: Television) =
             with(binding) {
                 Glide.with(itemView)
-                    .load("${television.baseUrl}${television.posterPath}")
+                    .load("${ApiService.IMAGE_BASE_URL}${television.posterPath}")
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .error(R.drawable.ic_image_error)

@@ -11,6 +11,4 @@ data class Television(
     @SerializedName("poster_path")
     val posterPath: String,
     val name: String
-) : Parcelable {
-    val baseUrl get() = "https://image.tmdb.org/t/p/w500"
-}
+) : Parcelable
