@@ -108,7 +108,11 @@ class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClic
     }
 
     override fun onItemClick(movie: Movie) {
-        findNavController().navigate(MovieFragmentDirections.actionMovieFragmentToDetailsFragment(movie))
+        findNavController().navigate(
+            MovieFragmentDirections.actionMovieFragmentToDetailsFragment(
+                movie
+            )
+        )
     }
 
     override fun onDestroyView() {
