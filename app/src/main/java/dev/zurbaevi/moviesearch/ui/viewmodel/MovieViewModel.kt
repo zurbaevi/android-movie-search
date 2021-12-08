@@ -10,9 +10,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.zurbaevi.moviesearch.data.model.Movie
 import dev.zurbaevi.moviesearch.data.repisitory.MovieRepository
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 
 @HiltViewModel
+@ExperimentalCoroutinesApi
 class MovieViewModel @Inject constructor(
     private val repository: MovieRepository,
 ) : ViewModel() {

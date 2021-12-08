@@ -4,10 +4,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.rxjava3.flowable
 import dev.zurbaevi.moviesearch.data.api.ApiService
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
+@ExperimentalCoroutinesApi
 class MovieRepository @Inject constructor(
     private val apiService: ApiService,
 ) {
@@ -15,8 +17,8 @@ class MovieRepository @Inject constructor(
     fun getNowPlayingMovies() =
         Pager(
             config = PagingConfig(
-                pageSize = 5,
-                maxSize = 20,
+                pageSize = 20,
+                maxSize = 60,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { MoviePagingSource(apiService, null) }
@@ -25,8 +27,8 @@ class MovieRepository @Inject constructor(
     fun searchMovies(query: String) =
         Pager(
             config = PagingConfig(
-                pageSize = 5,
-                maxSize = 20,
+                pageSize = 20,
+                maxSize = 60,
                 enablePlaceholders = false
             ),
             pagingSourceFactory = { MoviePagingSource(apiService, query) }

@@ -18,12 +18,10 @@ import dev.zurbaevi.moviesearch.databinding.FragmentMovieBinding
 import dev.zurbaevi.moviesearch.ui.adapter.MovieAdapter
 import dev.zurbaevi.moviesearch.ui.adapter.MovieLoadStateAdapter
 import dev.zurbaevi.moviesearch.ui.viewmodel.MovieViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 @AndroidEntryPoint
+@ExperimentalCoroutinesApi
 class MovieFragment : Fragment(R.layout.fragment_movie), MovieAdapter.OnItemClickListener {
 
     private var _binding: FragmentMovieBinding? = null
