@@ -12,4 +12,8 @@ data class Movie(
     val posterPath: String,
     @SerializedName("original_title")
     val originalTitle: String,
+    @SerializedName("release_date")
+    val releaseDate: String,
+    @SerializedName("vote_average")
+    val voteAverage: String
 ) : Parcelable

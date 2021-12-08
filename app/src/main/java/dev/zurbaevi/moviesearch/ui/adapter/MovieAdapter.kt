@@ -56,6 +56,8 @@ class MovieAdapter(private val listener: OnItemClickListener) :
                     .into(imageViewPoster)
                 textViewTitle.text = movie.originalTitle
                 textViewOverview.text = movie.overview
+                textViewReleaseDate.text = movie.releaseDate
+                textViewVoteAverage.text = movie.voteAverage
             }
 
     }

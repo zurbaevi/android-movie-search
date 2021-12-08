@@ -56,6 +56,8 @@ class TelevisionAdapter(private val listener: OnItemClickListener) :
                     .into(imageViewPoster)
                 textViewTitle.text = television.name
                 textViewOverview.text = television.overview
+                textViewReleaseDate.text = television.releaseDate
+                textViewVoteAverage.text = television.voteAverage
             }
 
     }

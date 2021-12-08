@@ -10,5 +10,9 @@ data class Television(
     val overview: String,
     @SerializedName("poster_path")
     val posterPath: String,
-    val name: String
+    val name: String,
+    @SerializedName("first_air_date")
+    val releaseDate: String,
+    @SerializedName("vote_average")
+    val voteAverage: String
 ) : Parcelable
