@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        navigation_version = "2.3.5"
+        navigation_version = '2.4.0'
         core_ktx_version = '1.7.0'
         appcompat_version = '1.4.1'
         material_version = '1.5.0'
@@ -16,7 +16,7 @@ buildscript {
         build_gradle_version = '7.0.4'
         kotlin_gradle_plugin = "1.5.30"
         hilt_version = '2.40.5'
-        okhttp_version = '5.0.0-alpha.3'
+        okhttp_version = '5.0.0-alpha.4'
         paging_version = '3.1.0'
         swipe_version = "1.1.0"
     }
